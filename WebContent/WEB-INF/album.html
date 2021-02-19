@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title th:text="${album.title + '| Image Gallery | Lorenzo Fratus'}">Album | Image Gallery | Lorenzo Fratus</title>
+<link rel="stylesheet" type="text/css" media="all" href="../css/style.css" th:href="@{/css/style.css}"/>
+</head>
+<body>	
+	
+	<div class="banner overlay">
+		<h1 class="heading_center absolute-center">
+			<div class="secondary_heading">Take a look at</div>
+			<div th:text="${album.title}"  class="primary_heading">Abstract Images</div>
+			<a href="#" th:href="@{/Home}" class="call-to-action animation background">Home</a>
+		</h1>
+	</div>
+	
+	<div th:if="${images == null || images.size() == 0}" class="card">
+		<h2 class="heading_center">
+			<div class="secondary_heading">Oups!</div>
+			<div class="primary_heading">Looks like there are no images in this album yet</div>
+		</h2>
+	</div>	
+	
+	<div th:if="${images != null && images.size() > 0}" class="card floating">		
+		<div th:remove="all-but-first" class="five columns">
+			<a href="#" th:each="i : ${images}" th:href="@{/Album(album=${album.id}, image=${i.id})}" class="thumbnail overlay">
+				<img src="../img/abstract-images/abstract-abstract-painting-acrylic-acrylic-paint-1585325.jpg" th:src="@{'/img/' + ${i.src}}" alt="Abstract Acrylic Painting" th:alt="${i.title}"/>
+				<h3 th:text="${i.title}" class="absolute-center">Abstract Acrylic Painting</h3>
+			</a>
+			<a href="#" class="thumbnail overlay">
+				<img src="../img/abstract-images/abstract-art-canvas-colors-288099.jpg" alt="Abstract Art Canvas"/>
+				<h3 class="absolute-center">Abstract Art Canvas</h3>
+			</a>
+			<a href="#" class="thumbnail overlay">
+				<img src="../img/abstract-images/abstract-painting-1255372.jpg" alt="Abstract Painting"/>
+				<h3 class="absolute-center">Abstract Painting</h3>
+			</a>
+			<a href="#" class="thumbnail overlay">
+				<img src="../img/abstract-images/abstract-painting-1418595.jpg" alt="Abstract Painting"/>
+				<h3 class="absolute-center">Abstract Painting</h3>
+			</a>
+			<a href="#" class="thumbnail overlay">
+				<img src="../img/abstract-images/aerial-photography-of-seashore-1624450.jpg" alt="Aerial Photography"/>
+				<h3 class="absolute-center">Aerial Photography</h3>
+			</a>
+		</div>	
+
+		<div class="scrollers">
+			<a th:if="${prev != null}" href="#" th:href="@{/Album(album=${album.id}, image=${prev.id})}" class="animation underline reverse">Previous</a>
+			<a th:if="${next != null}" href="#" th:href="@{/Album(album=${album.id}, image=${next.id})}" class="animation underline">Following</a>
+		</div>
+	</div>
+	
+	<div th:if="${active != null}" class="container">
+		<h2 class="heading_center">
+			<div class="secondary_heading">This is</div>
+			<div th:text="${active.title}" class="primary_heading">Abstract Acrylic Painting</div>
+		</h2>
+
+		<div class="image">
+			<img src="../img/abstract-images/abstract-abstract-painting-acrylic-acrylic-paint-1585325.jpg" th:src="@{'/img/' + ${active.src}}" alt="Abstract Acrylic Painting" th:alt="${active.title}"/>
+		</div>
+
+		<div class="info">
+			<h4 th:text="${active.date}">2020-05-13</h4>
+			<p th:text="${active.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac diam risus. Duis venenatis a nunc id tempus. Maecenas tempor, magna fringilla hendrerit tincidunt, nunc massa egestas elit, ac placerat purus enim a neque.</p>
+		</div>
+
+		<h2 th:if="${comments != null && comments.size() > 0}" class="heading_center">
+			<div class="primary_heading">Comments</div>
+		</h2>
+
+		<div th:if="${comments != null && comments.size() > 0}" th:remove="all-but-first">
+			<div th:each="c : ${comments}" class="comment">
+				<h3 th:text="${c.username}">Anonymous</h3>
+				<p th:text="${c.text}" class="italic">Mauris vel lorem at diam malesuada faucibus ut euismod lectus. Aliquam erat volutpat. Integer egestas pulvinar ante in varius.</p>
+			</div>			
+			<div class="comment">
+				<h3>Lorenzo</h3>
+				<p class="italic">Maecenas sed felis eu magna accumsan vehicula.</p>
+			</div>			
+		</div>
+
+		<h2 class="heading_center">
+			<div class="primary_heading">Leave your comment!</div>
+		</h2>
+
+		<div class="comment-form">
+			<form action="#" th:action="@{/AddComment}" method="post">
+				<label for="username">Username</label>
+				<input name="username" type="text"/>
+				<label for="text">Comment</label>
+				<textarea name="text" required></textarea>
+				<input name="image" type="hidden" th:value="${active.id}"/>
+				<button type="submit" class="animation background">Send</button>
+			</form>
+		</div>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,542 @@
+@import url("normalize.css");
+@import url("font.css");
+
+/*
+ * TABLE OF CONTENTS
+ * 1. Variables
+ * 2. Typography
+ * 3. Column layout
+ * 4. Utilities
+ * 5. Animations
+ * 6. Banner
+ * 7. Card
+ *		7.1. Thumbnail
+ *		7.2. Scrollers
+ * 8. Container
+ *		8.1. Album
+ *		8.2. Image
+ *		8.3. Comments
+ * 9. Media query
+ */
+
+/****************
+ * 1. Variables *
+ ****************/
+
+:root {
+	--heading-font-family: "Montserrat", sans-serif;
+	--accent-font-family: "Yesteryear", cursive;
+	--body-font-family: "Source Sans Pro", sans-serif;
+	--heading-font-weight-1: 700;
+	--heading-font-weight-2: 600;
+	--heading-font-weight-3: 500;
+	--heading-font-weight-4: 400;
+	--accent-font-weight: 400;
+	--body-font-weight: 400;
+	--base-font-size: 16px;
+	--heading-font-size-1: 2.8em;
+	--heading-font-size-2: 1.8em;
+	--heading-font-size-3: 1.3em;
+	--heading-font-size-4: .8em;
+	--paragraph-font-size: 1.2em;	
+	--button-font-size: 1em;
+	
+	--primary-color: #ddab5d;
+	--secondary-color: #34394b;
+	--accent-color: #fff;
+	--background-color-1: #ebebeb;
+	--background-color-2: #fff;	
+	
+	--border-radius: 15px;
+	--stroke-weight: 2px;
+	
+	--default-transition: .4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/****************
+ * 2.Typography *
+ ****************/
+
+body {
+	font-family: var(--body-font-family);
+	font-weight: var(--body-font-weight);
+	font-size: var(--base-font-size);
+	background: var(--background-color-1);
+	color: var(--secondary-color);
+}
+
+h1 {
+	font-family: var(--heading-font-family);
+	font-weight: var(--heading-font-weight-1);
+	font-size: var(--heading-font-size-1);
+	margin: .5em 0;
+}
+h2 {
+	font-family: var(--heading-font-family);
+	font-weight: var(--heading-font-weight-2);
+	font-size: var(--heading-font-size-2);
+	margin: .25em 0;
+}
+h3 {
+	font-family: var(--heading-font-family);
+	font-weight: var(--heading-font-weight-3);
+	font-size: var(--heading-font-size-3);
+	margin: 0;
+}
+h4 {
+	font-family: var(--heading-font-family);
+	font-weight: var(--heading-font-weight-4);
+	font-size: var(--heading-font-size-4);
+	margin: .25em 0;
+}
+p {
+	font-size: var(--paragraph-font-size);
+	margin: .5em 0 0;
+}
+button {
+	font-family: var(--heading-font-family);
+	font-weight: var(--heading-font-weight-1);
+	font-size: var(--button-font-size);
+}
+a {
+	color: var(--secondary-color);
+	text-decoration: none;
+}
+.italic {
+	font-style: italic;
+}
+
+.heading_center {
+	text-align: center;
+	width: 90%;
+	margin: 1.25em auto;
+}
+.primary_heading {
+	margin: 0;
+}
+.secondary_heading {
+	font-family: var(--accent-font-family);
+	font-weight: var(--accent-font-weight);
+	font-size: 1.25em;
+	line-height: .7em;
+	color: var(--primary-color);
+}
+.call-to-action {	
+	font-weight: inherit;
+	font-size: .5em;
+	max-width: 150px;
+	padding: .3em .7em;
+	margin: 1em 0 0;
+}
+
+/********************
+ * 3. Column layout *
+ ********************/
+
+.columns {	
+	max-width: 1300px;
+	text-align: center;
+	margin: 0 auto;
+  -webkit-column-fill: balance;
+     -moz-column-fill: balance;
+          column-fill: balance;
+}
+.columns.two {
+	-webkit-columns: 550px;
+	   -moz-columns: 550px;
+	        columns: 550px;
+}
+.columns.five {
+	-webkit-columns: 200px;
+	   -moz-columns: 200px;
+	        columns: 200px;
+}
+
+/****************
+ * 4. Utilities *
+ ****************/
+
+.overlay::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, .5);
+}
+
+.absolute-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+
+/*****************
+ * 5. Animations *
+ *****************/
+
+.animation {
+	position: relative;
+	display: inline-block;
+	width: 100%;	
+	text-align: center;
+}
+.animation.underline {
+	padding: .5em 0 .3em;
+	margin: 1.5em auto -.3em;
+}
+.animation.background {
+	color: var(--background-color-2);
+	background: none;
+	overflow: hidden;
+	border: var(--stroke-weight) solid var(--primary-color);
+	border-radius: var(--border-radius);
+	-webkit-transition: var(--default-transition);
+	-o-transition: var(--default-transition);
+	transition: var(--default-transition);
+	-webkit-transition-property: color;
+	-o-transition-property: color;
+	transition-property: color;
+	z-index: 1;
+}
+.animation::before {
+	content: "";
+	position: absolute;
+	right: calc(-1 * var(--stroke-weight));
+	bottom: calc(-1 * var(--stroke-weight));
+	left: calc(-1 * var(--stroke-weight));
+	-webkit-transform: scale3d(1, 1, 1);
+	        transform: scale3d(1, 1, 1);
+	will-change: transform;
+	-webkit-transform-origin: left;
+	    -ms-transform-origin: left;
+	        transform-origin: left;
+	background: var(--primary-color);
+	-webkit-transition: var(--default-transition);
+	-o-transition: var(--default-transition);
+	transition: var(--default-transition);
+	-webkit-transition-property: -webkit-transform;
+	transition-property: -webkit-transform;
+	-o-transition-property: transform;
+	transition-property: transform;
+	transition-property: transform, -webkit-transform;	
+	-webkit-box-sizing: border-box;	
+	        box-sizing: border-box;	
+}
+.animation.reverse::before {
+	-webkit-transform-origin: right;
+	    -ms-transform-origin: right;
+	        transform-origin: right;
+}
+.animation.underline::before {
+	height: var(--stroke-weight);
+}
+.animation.background::before {
+	top: calc(-1 * var(--stroke-weight));
+	z-index: -1;
+}
+.animation:hover::before {
+	-webkit-transform: scale3d(0, 1, 1);
+	        transform: scale3d(0, 1, 1);
+  -webkit-transform-origin: right;
+      -ms-transform-origin: right;
+          transform-origin: right;
+}
+.animation.reverse:hover::before {
+	-webkit-transform-origin: left;
+	    -ms-transform-origin: left;
+	        transform-origin: left;
+}
+.animation.background:hover {
+	color: var(--primary-color);
+}
+
+/*************
+ * 6. Banner *
+ *************/
+
+.banner {
+	position: relative;
+	width: 100%;
+	min-height: 40vh;
+	background: url("../img/background.jpg") no-repeat 50% 50% fixed;
+	background-size: cover;
+	padding-bottom: var(--border-radius);
+}
+.banner.big {
+	min-height: 60vh;
+}
+.banner .heading_center {
+	margin: 0;
+}
+.banner .primary_heading {
+	color: var(--accent-color);
+}
+.banner + .card {
+	-webkit-transform: translateY(calc(-1 * var(--border-radius)));
+	    -ms-transform: translateY(calc(-1 * var(--border-radius)));
+	        transform: translateY(calc(-1 * var(--border-radius)));
+}
+.banner:not(.big) + .card:not(.floating) {
+	min-height: 60vh;
+}
+
+/***********
+ * 7. Card *
+ ***********/
+
+.card {
+	width: 100%;
+	max-width: 1300px;
+	min-height: 40vh;
+	margin: 0 auto;
+	background-color: var(--background-color-2);
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
+	-webkit-box-shadow: 0px 7px 30px 0px rgba(0,0,0,0.35);
+	        box-shadow: 0px 7px 30px 0px rgba(0,0,0,0.35);
+	padding: 5%;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.card.floating {
+	min-height: 0;
+	border-radius: var(--border-radius);
+}
+
+/* 7.1. Thumbnail */
+
+.card .thumbnail {
+	position: relative;
+	height: 250px;
+	min-width: 200px;
+	display: block;
+}
+.card .thumbnail:not(:first-child) {
+	margin: .5em 0;
+}
+.card .thumbnail img {
+	height: 100%;
+	width: 100%;
+	-o-object-fit: cover;
+	   object-fit: cover;
+}
+.card .thumbnail h3 {
+	color: var(--accent-color);
+	text-align: center;
+}
+.card .thumbnail h3,
+.card .thumbnail::before {
+	opacity: 0;
+	-webkit-transition: var(--default-transition);
+	-o-transition: var(--default-transition);
+	transition: var(--default-transition);
+	-webkit-transition-property: opacity;
+	-o-transition-property: opacity;
+	transition-property: opacity;	
+}
+.card .thumbnail:hover h3, 
+.card .thumbnail:hover::before {
+	opacity: 1;
+}
+
+/* 7.2. Scrollers */
+
+.card .scrollers {
+	max-width: 800px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	margin: 0 auto;
+	padding: 0 0 1em;
+	overflow: hidden;
+}
+.card .scrollers a {
+	max-width: 300px;
+	font-size: 1.5em;
+}
+
+/****************
+ * 8. Container *
+ ****************/
+
+.container {
+	width: 90%;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 5vh 5% 15vh;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.container.full {
+	max-width: 1300px;
+}
+.container > * {
+	width: 100%;
+}
+
+/* 8.1. Album */
+
+.container .album {
+	width: 100%;
+	max-width: 600px;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	margin: 0 auto 2em;
+	padding: 3% 5%;
+	background: var(--background-color-2);
+	border-radius: var(--border-radius);
+	text-align: left;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.container .album a{
+	width: 20%;
+	padding: .3em 0;
+	font-weight: var(--heading-font-weight-3);
+}
+
+/* 8.2. Image */
+
+.container .image{
+	position: relative;
+	max-height: 600px;
+	overflow: hidden;
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+.container .image img {
+	width: 100%;
+	display: block;
+}
+
+.container .info {
+	width: 100%;
+	padding: 10%;
+	background: var(--accent-color);
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+/* 8.3. Comments */
+
+.container .comment {
+	padding: 2em 10%;
+	margin: 0 auto 1.5em;
+	background: var(--accent-color);
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	border-radius: var(--border-radius);
+}
+
+.container .comment-form {
+	position: relative;
+  -webkit-font-smoothing: antialiased;
+  	 -moz-font-smoothing: antialiased;
+  		 -o-font-smoothing: antialiased;
+  				font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+	width: 100%;
+	margin: 0 auto;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.container .comment-form label {
+	display: block;
+	font-weight: var(--heading-font-weight-3);
+	text-align: left;
+	margin: .5em;
+}
+.container .comment-form input, 
+.container .comment-form textarea {
+	width: 100%;
+	height: 3em;
+	border: var(--stroke-weight) solid var(--background-color-2);
+	border-radius: var(--border-radius);
+	background: var(--background-color-2);
+	margin: 0 0 .5em 0;
+	padding: .5em 1.5em;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	-webkit-appearance: none;
+		 -moz-appearance: none;
+					appearance: none;
+	position: relative;
+}
+.container .comment-form textarea {
+	padding-top: .75em;
+	height: 7.5em;
+	resize: none;
+}
+.container .comment-form input:hover, 
+.container .comment-form textarea:hover {
+	-webkit-transition: var(--default-transition);
+	-o-transition: var(--default-transition);
+	transition: var(--default-transition);
+	-webkit-transition-property: border-color;
+	-o-transition-property: border-color;
+	transition-property: border-color;
+  border-color: rgba(52,57,75,0.5);
+}
+.container .comment-form input:focus,
+.container .comment-form textarea:focus,
+.container .comment-form input:valid,
+.container .comment-form textarea:valid { 
+	outline: 0;
+	border-color: var(--secondary-color);
+}
+.container .comment-form button {
+	-webkit-appearance: none;
+		 -moz-appearance: none;
+					appearance: none;
+	height: 3em;
+	padding: 0;
+	margin: 1em 0 0;	
+	cursor: pointer;
+}
+
+/******************
+ * 9. Media Query *
+ ******************/
+
+@media screen and (min-width: 1300px) {
+	.card.floating .thumbnail {
+		height: 15vh;
+		-webkit-transition: var(--default-transition);
+		-o-transition: var(--default-transition);
+		transition: var(--default-transition);
+		-webkit-transition-property: height;
+		-o-transition-property: height;
+		transition-property: height;
+	}	
+	.card.floating:hover .thumbnail {
+		height: 250px;
+	}
+	
+	.card.floating .scrollers {
+		height: 0;
+		padding: 0;
+		-webkit-transition: var(--default-transition);
+		-o-transition: var(--default-transition);
+		transition: var(--default-transition);
+		-webkit-transition-property: height, padding;
+		-o-transition-property: height, padding;
+		transition-property: height, padding;
+	}
+	.card.floating:hover .scrollers {
+		height: 4em;
+		padding: 0 0 1.5em;
+	}
+}

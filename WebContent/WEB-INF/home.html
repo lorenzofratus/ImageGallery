@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Image Gallery | Lorenzo Fratus</title>
+<link rel="stylesheet" type="text/css" media="all" href="../css/style.css" th:href="@{/css/style.css}"/>
+</head>
+<body>	
+	
+	<div class="banner overlay big">
+		<h1 class="heading_center absolute-center">
+			<div class="secondary_heading">Welcome to my</div>
+			<div class="primary_heading">Image Gallery</div>
+		</h1>
+	</div>
+	
+	<div th:if="${albums.size() == 0}" class="card">
+		<h2 class="heading_center">
+			<div class="secondary_heading">Oups!</div>
+			<div class="primary_heading">Looks like there is no album yet</div>
+		</h2>
+	</div>
+	
+	<div th:if="${albums.size() > 0}" class="container full">
+		<h2 class="heading_center">
+			<div class="secondary_heading">Feel free to</div>
+			<div class="primary_heading">Browse my albums</div>
+		</h2>		
+		
+		<div th:remove="all-but-first" class="two columns">
+			<div th:each="a : ${albums}" class="album">
+				<div>
+					<h4 th:text="${a.date}">2020-05-17</h4>
+					<h3 th:text="${a.title}">Inspirational Art Images</h3>
+				</div>
+				<a href="#" th:href="@{/Album(album = ${a.id})}" class="animation background">SHOW</a>
+			</div>
+			<div class="album">			
+				<div>
+					<h4>2020-05-13</h4>
+					<h3>Abstract Images</h3>
+				</div>
+				<a href="#" class="animation background">SHOW</a>
+			</div>
+			<div class="album">
+				<div>
+					<h4>2020-05-08</h4>
+					<h3>Forest Pictures</h3>
+				</div>
+				<a href="#" class="animation background">SHOW</a>
+			</div>
+			<div class="album">
+				<div>
+					<h4>2020-04-26</h4>
+					<h3>Empty Album</h3>
+				</div>
+				<a href="#" class="animation background">SHOW</a>
+			</div>
+			<div class="album">
+				<div>
+					<h4>2020-04-23</h4>
+					<h3>Pattern Photos</h3>
+				</div>
+				<a href="#" class="animation background">SHOW</a>
+			</div>
+			<div class="album">
+				<div>
+					<h4>2020-04-02</h4>
+					<h3>Vintage Photos</h3>
+				</div>
+				<a href="#" class="animation background">SHOW</a>
+			</div>
+			<div class="album">
+				<div>
+					<h4>2020-03-30</h4>
+					<h3>City Photos</h3>
+				</div>
+				<a href="#" class="animation background">SHOW</a>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

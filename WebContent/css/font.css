@@ -1,0 +1,42 @@
+@font-face {
+	font-family: "Source Sans Pro";
+	font-weight: 400;
+	src: url(../font/source-sans-pro/SourceSansPro-Regular.ttf);
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	font-weight: 400;
+	font-style: italic;
+	src: url(../font/source-sans-pro/SourceSansPro-Italic.ttf);
+}
+
+@font-face {
+	font-family: "Yesteryear";
+	font-weight: 400;
+	src: url(../font/yesteryear/Yesteryear-Regular.ttf);
+}
+
+@font-face {
+	font-family: "Montserrat";
+	font-weight: 400;
+	src: url(../font/montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+	font-family: "Montserrat";
+	font-weight: 500;
+	src: url(../font/montserrat/Montserrat-Medium.ttf);
+}
+
+@font-face {
+	font-family: "Montserrat";
+	font-weight: 600;
+	src: url(../font/montserrat/Montserrat-SemiBold.ttf);
+}
+
+@font-face {
+	font-family: "Montserrat";
+	font-weight: 700;
+	src: url(../font/montserrat/Montserrat-Bold.ttf);
+}
