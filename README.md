@@ -1,6 +1,8 @@
+![Image Gallery](../assets/banner.png)
+
 <br />
 <p align="center">
-  <h2 align="center">Image Gallery</h2>
+  <h1 align="center">Image Gallery</h1>
 
   <p align="center">
     Project developed for the final exam of the course named <em>Information Technology for the Web</em> (Tecnologie Informatiche per il Web) held by Professor Piero Fraternali at <em>Politecnico di Milano</em>.
